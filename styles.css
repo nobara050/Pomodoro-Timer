@@ -1,0 +1,466 @@
+link[rel="icon"] {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Letter Content */
+.letter-content {
+  color: #3e2723;
+  line-height: 1.7;
+  font-size: 0.95em;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+
+.letter-content p {
+  margin-bottom: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, #8b7355 0%, #d2b48c 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #3e2723;
+  transition: background 0.5s ease;
+}
+
+body.focus-mode {
+  background: linear-gradient(135deg, #8b7355 0%, #d2b48c 100%);
+}
+
+body.short-break-mode {
+  background: linear-gradient(135deg, #356a92 0%, #a8d8ea 100%);
+}
+
+body.long-break-mode {
+  background: linear-gradient(135deg, #2f7c81 0%, #95d5b2 100%);
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 450px;
+  width: 90%;
+  transition: background 0.5s ease;
+}
+
+/* ======================================== */
+/* THAY ĐỔI MÀU CONTAINER Ở ĐÂY */
+/* ======================================== */
+
+body.focus-mode .container {
+  background: rgba(255, 248, 240, 0.95);
+}
+
+body.short-break-mode .container {
+  background: rgba(187, 201, 211, 0.95);
+}
+
+body.long-break-mode .container {
+  background: rgba(197, 214, 203, 0.95);
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.3em;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.mode-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.mode-btn {
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.5);
+  color: #333;
+  font-size: 0.95em;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.mode-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.mode-btn.active {
+  background: rgba(255, 255, 255, 1);
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* GIF Container */
+.gif-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  margin-bottom: 10px;
+}
+
+.gif-image {
+  max-width: 160px;
+  max-height: 120px;
+  object-fit: contain;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.timer-display {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.time {
+  font-size: 4em;
+  font-weight: 700;
+  color: #333;
+  letter-spacing: 3px;
+}
+
+.mode-label {
+  font-size: 1.1em;
+  color: #666;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.control-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.control-btn {
+  padding: 12px 35px;
+  min-width: 110px; /* Cố định width để không bị nhảy khi đổi text */
+  border: none;
+  background: #333;
+  color: white;
+  font-size: 1em;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.3s; /* Chỉ transition màu nền, bỏ transform */
+  font-weight: 600;
+}
+
+.control-btn:hover {
+  background: #555;
+}
+
+.control-btn:active {
+  background: #222;
+}
+
+.settings {
+  border-top: 2px solid #ddd;
+  padding-top: 18px;
+}
+
+.settings h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+}
+
+.setting-item label {
+  font-size: 0.95em;
+  color: #333;
+  font-weight: 500;
+}
+
+.setting-item input {
+  width: 80px;
+  padding: 8px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95em;
+  font-family: inherit;
+  background: white;
+  color: #333;
+  text-align: center;
+  font-weight: 500;
+}
+
+.setting-item input:focus {
+  outline: none;
+  border-color: #333;
+}
+
+/* ==========================================
+   LETTER BUTTON & DIALOG STYLES
+   ========================================== */
+
+.letter-button-container {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.letter-btn {
+  padding: 12px 30px;
+  border: 2px solid #c5baaf;
+  background: linear-gradient(135deg, #d3d2cb 0%, #c5baaf 100%);
+  color: #3e2723;
+  font-size: 1em;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.letter-btn:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.letter-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus Mode - Nâu/Tan */
+body.focus-mode .letter-btn {
+  border: 2px solid #c5baaf;
+  background: linear-gradient(135deg, #d3d2cb 0%, #c5baaf 100%);
+  color: #3e2723;
+}
+
+body.focus-mode .letter-btn:hover {
+  background: linear-gradient(135deg, #c5baaf 0%, #b5a89a 100%);
+}
+
+/* Short Break Mode - Xanh dương nhẹ */
+body.short-break-mode .letter-btn {
+  border: 2px solid #7d9cb5;
+  background: linear-gradient(135deg, #bac9d4 0%, #91a1af 100%);
+  color: #1a3a52;
+}
+s body.short-break-mode .letter-btn:hover {
+  background: linear-gradient(135deg, #7d9cb5 0%, #5b7a94 100%);
+}
+
+/* Long Break Mode - Xanh mint/teal */
+body.long-break-mode .letter-btn {
+  border: 2px solid #6b9080;
+  background: linear-gradient(135deg, #a4c3b2 0%, #7f9b8f 100%);
+  color: #1f3d33;
+}
+
+body.long-break-mode .letter-btn:hover {
+  background: linear-gradient(135deg, #758b82 0%, #6b867a 100%);
+}
+
+/* Overlay Background */
+.letter-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.letter-overlay.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Letter Dialog */
+.letter-dialog {
+  background: linear-gradient(135deg, #f5f1ed 0%, #e8e4df 100%);
+  border: 3px solid #c5baaf;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 450px;
+  width: 85%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Close Button */
+.letter-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #c5baaf;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 1.8em;
+  color: #3e2723;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.letter-close:hover {
+  background: #b5a89a;
+  transform: rotate(90deg);
+}
+
+/* Letter Header */
+.letter-header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #c5baaf;
+}
+
+.letter-header h2 {
+  color: #3e2723;
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+/* Letter Content */
+.letter-content {
+  color: #3e2723;
+  line-height: 1.8;
+  font-size: 1.05em;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+
+.letter-content p {
+  margin-bottom: 15px;
+}
+
+.letter-signature {
+  margin-top: 30px;
+  text-align: right;
+  font-style: italic;
+}
+
+.letter-signature p {
+  margin-bottom: 5px;
+}
+
+.letter-signature em {
+  font-weight: 600;
+  color: #5d4e37;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .container {
+    padding: 25px;
+  }
+
+  h1 {
+    font-size: 1.3em;
+  }
+
+  .time {
+    font-size: 3.5em;
+  }
+
+  .mode-btn {
+    padding: 8px 15px;
+    font-size: 0.85em;
+  }
+
+  .control-btn {
+    padding: 12px 25px;
+    min-width: 100px;
+    font-size: 1em;
+  }
+
+  .letter-dialog {
+    padding: 30px;
+  }
+
+  .letter-header h2 {
+    font-size: 1.5em;
+  }
+
+  .letter-content {
+    font-size: 1em;
+  }
+}

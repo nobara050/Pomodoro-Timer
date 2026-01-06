@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro Timer</title>
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="focus-mode">
+    <div class="container">
+      <h1>Pomodoro Timer</h1>
+
+      <div class="mode-buttons">
+        <button class="mode-btn active" data-mode="focus">Focus</button>
+        <button class="mode-btn" data-mode="short">Short Break</button>
+        <button class="mode-btn" data-mode="long">Long Break</button>
+      </div>
+
+      <div class="gif-container">
+        <!-- =======================
+             THAY ĐỔI ĐƯỜNG DẪN GIF
+             ======================= -->
+
+        <img
+          id="focusGif"
+          class="gif-image"
+          src="./img/coffee.gif"
+          alt="Coffee"
+        />
+        <img
+          id="shortBreakGif"
+          class="gif-image hidden"
+          src="./img/break.gif"
+          alt="Water"
+        />
+        <img
+          id="longBreakGif"
+          class="gif-image hidden"
+          src="./img/longbreak.gif"
+          alt="Long Break"
+        />
+      </div>
+
+      <div class="timer-display">
+        <div class="time" id="timer">25:00</div>
+        <div class="mode-label" id="modeLabel">Focus time</div>
+      </div>
+
+      <div class="control-buttons">
+        <button class="control-btn" id="startBtn">Start</button>
+        <button class="control-btn" id="resetBtn">Reset</button>
+      </div>
+
+      <div class="settings">
+        <h3>Settings (minutes)</h3>
+        <div class="setting-item">
+          <label for="focusTime">Focus:</label>
+          <input type="number" id="focusTime" min="1" max="60" value="25" />
+        </div>
+        <div class="setting-item">
+          <label for="shortBreakTime">Short Break:</label>
+          <input type="number" id="shortBreakTime" min="1" max="30" value="5" />
+        </div>
+        <div class="setting-item">
+          <label for="longBreakTime">Long Break:</label>
+          <input type="number" id="longBreakTime" min="1" max="60" value="15" />
+        </div>
+      </div>
+
+      <!-- NÚT MỞ THƯ -->
+      <div class="letter-button-container">
+        <button class="letter-btn" id="openLetterBtn">Notes</button>
+      </div>
+    </div>
+
+    <!-- DIALOG THƯ -->
+    <div class="letter-overlay hidden" id="letterOverlay">
+      <div class="letter-dialog">
+        <button class="letter-close" id="closeLetterBtn">&times;</button>
+        <div class="letter-header">
+          <h2>Gửi chồng yêu Anh Thư</h2>
+        </div>
+        <div class="letter-content">
+          <p>Hi,</p>
+          <p>
+            Hãy luôn nhớ rằng mỗi phút giây tập trung đều có giá trị. Nhưng mà
+            đừng quên nghỉ ngơi để duy trì năng suất làm việc tốt nhất nha! Chúc
+            bồ làm việc hiệu quả và đạt được mục tiêu của mình.
+          </p>
+          <p>Có bug hay bị sập gì hú tiktok nha 😭</p>
+          <div class="letter-signature">
+            <p>Yêu,</p>
+            <p><em>No3ra</em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
