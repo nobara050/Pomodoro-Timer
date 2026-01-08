@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pomodoro Timer</title>
     <link rel="icon" type="image/x-icon" href="./img/favicon.ico" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body class="focus-mode">
     <div class="container">
@@ -18,10 +18,6 @@
       </div>
 
       <div class="gif-container">
-        <!-- =======================
-             THAY ĐỔI ĐƯỜNG DẪN GIF
-             ======================= -->
-
         <img
           id="focusGif"
           class="gif-image"
@@ -52,6 +48,76 @@
         <button class="control-btn" id="resetBtn">Reset</button>
       </div>
 
+      <!-- TASK MANAGEMENT SECTION -->
+      <div class="task-management">
+        <h3>Task</h3>
+
+        <!-- Task Dropdown -->
+        <div class="task-dropdown">
+          <div class="task-selector" id="taskSelector">
+            <span id="taskSelectorText">No task selected</span>
+            <span class="dropdown-arrow">▼</span>
+          </div>
+          <div class="task-dropdown-list hidden" id="taskDropdownList">
+            <!-- Tasks will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Task Actions (below dropdown) -->
+        <div class="task-actions">
+          <button
+            type="button"
+            class="task-action-btn task-info-btn hidden"
+            id="taskInfoBtn"
+          >
+            Task Info
+          </button>
+
+          <button
+            type="button"
+            class="task-action-btn add-task-btn"
+            id="addTaskBtn"
+          >
+            Add New Task
+          </button>
+        </div>
+
+        <!-- Task Info Panel (hidden by default) -->
+        <div class="task-info-panel hidden" id="taskInfoPanel">
+          <div class="task-description" id="taskDescription"></div>
+          <div class="task-progress">
+            <div class="task-progress-text">
+              <span id="taskProgressText">0 / 0 sessions</span>
+              <span id="taskProgressPercent">0%</span>
+            </div>
+            <div class="progress-bar-container">
+              <div
+                class="progress-bar"
+                id="taskProgressBar"
+                style="width: 0%"
+              ></div>
+            </div>
+          </div>
+          <div class="task-sessions-list" id="taskSessionsList"></div>
+          <div class="task-info-actions">
+            <button
+              type="button"
+              class="task-action-btn edit-task-btn"
+              id="editTaskBtn"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              class="task-action-btn delete-task-btn"
+              id="deleteTaskBtn"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div class="settings">
         <h3>Settings (minutes)</h3>
         <div class="setting-item">
@@ -68,16 +134,120 @@
         </div>
       </div>
 
-      <!-- NÚT MỞ THƯ -->
       <div class="letter-button-container">
-        <button class="letter-btn" id="openLetterBtn">Notes</button>
+        <button type="button" class="letter-btn" id="openLetterBtn">
+          Notes
+        </button>
       </div>
     </div>
 
-    <!-- DIALOG THƯ -->
-    <div class="letter-overlay hidden" id="letterOverlay">
+    <!-- TASK FORM MODAL -->
+    <div class="modal-overlay hidden" id="taskFormOverlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="taskFormTitle">Add New Task</h3>
+          <button type="button" class="modal-close" id="taskFormClose">
+            &times;
+          </button>
+        </div>
+        <form id="taskForm">
+          <div class="form-group">
+            <label for="taskTitleInput">Title *</label>
+            <input
+              type="text"
+              id="taskTitleInput"
+              required
+              placeholder="Enter task title"
+            />
+          </div>
+          <div class="form-group">
+            <label for="taskDescInput">Description</label>
+            <textarea
+              id="taskDescInput"
+              placeholder="Enter task description (optional)"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="taskTargetInput">Target Sessions *</label>
+            <input
+              type="number"
+              id="taskTargetInput"
+              min="1"
+              value="4"
+              required
+            />
+          </div>
+          <div class="form-actions">
+            <button
+              type="button"
+              class="form-btn form-btn-secondary"
+              id="taskFormCancel"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="form-btn form-btn-primary"
+              id="taskFormSubmit"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- CONFIRMATION MODAL -->
+    <div class="modal-overlay hidden" id="confirmOverlay">
+      <div class="confirm-dialog">
+        <div class="confirm-header">
+          <h3 id="confirmTitle">Confirm</h3>
+        </div>
+        <div class="confirm-content">
+          <p id="confirmMessage"></p>
+        </div>
+        <div class="confirm-actions">
+          <button
+            type="button"
+            class="confirm-btn confirm-btn-cancel"
+            id="confirmCancel"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            class="confirm-btn confirm-btn-ok"
+            id="confirmOk"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALERT MODAL -->
+    <div class="modal-overlay hidden" id="alertOverlay">
+      <div class="alert-dialog">
+        <div class="alert-header">
+          <h3 id="alertTitle">Notification</h3>
+        </div>
+        <div class="alert-content">
+          <p id="alertMessage"></p>
+        </div>
+        <div class="alert-actions">
+          <button type="button" class="alert-btn alert-btn-ok" id="alertOk">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LETTER DIALOG -->
+    <div class="modal-overlay hidden" id="letterOverlay">
       <div class="letter-dialog">
-        <button class="letter-close" id="closeLetterBtn">&times;</button>
+        <button type="button" class="letter-close" id="closeLetterBtn">
+          &times;
+        </button>
         <div class="letter-header">
           <h2>Gửi chồng yêu Anh Thư</h2>
         </div>
@@ -85,10 +255,10 @@
           <p>Hi,</p>
           <p>
             Hãy luôn nhớ rằng mỗi phút giây tập trung đều có giá trị. Nhưng mà
-            đừng quên nghỉ ngơi để duy trì năng suất làm việc tốt nhất nha! Chúc
-            bồ làm việc hiệu quả và đạt được mục tiêu của mình.
+            đừng quên nghỉ ngơi để duy trì năng suất làm việc hiệu quả và đạt
+            được mục tiêu của mình.
           </p>
-          <p>Có bug hay bị sập gì hú tiktok nha 😭</p>
+          <p>Có bug hay bị sập gì hú tiktok nha 😊</p>
           <div class="letter-signature">
             <p>Yêu,</p>
             <p><em>No3ra</em></p>
@@ -97,6 +267,7 @@
       </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="main.js"></script>
   </body>
 </html>
